@@ -4,7 +4,11 @@ import { getDownloadURL, ref } from "firebase/storage";
 import firebaseConfig from "../models/FirebaseConfig";
 import placeholderImage from "../assets/placeholder-image.png";
 
+
+
 export default class LandingRecipesDisplay extends Component {
+  
+
   constructor(props) {
     super(props);
     this.state = {

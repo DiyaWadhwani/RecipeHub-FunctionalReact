@@ -38,8 +38,10 @@ export default class RecipeDetailsPage extends Component {
 
   async fetchRecipeDetailsFromBackend(recipeName, isForked) {
     try {
-      const fetchedRecipeDetails = 
-        await this.recipeDetails.fetchRecipeDetails(recipeName, isForked);
+      const fetchedRecipeDetails = await this.recipeDetails.fetchRecipeDetails(
+        recipeName,
+        isForked
+      );
       if (fetchedRecipeDetails) {
         this.setState({ recipeDetails: fetchedRecipeDetails });
       } else {

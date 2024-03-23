@@ -140,7 +140,7 @@ export default class CreateRecipePage extends Component {
 
     return (
       <>
-        <EmptyHeader headerTag="RecipeHub" />
+        <EmptyHeader headerTag={"RecipeHub"} />
         <Link to="/recipeList">
           <IoArrowBackOutline className="back-arrow" />
         </Link>
