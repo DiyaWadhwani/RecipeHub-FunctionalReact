@@ -1,0 +1,35 @@
+.form-styling {
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: #A4DAEB;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  margin: auto; /* Add this line to center horizontally */
+  margin-top: 50px;
+  margin-bottom: 30px;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+  overflow-y: auto;
+}
+
+.form-styling form {
+  max-height: 120vh;
+  overflow-y: auto;
+}
+
+.form-label {
+  font-weight: 600;
+}
+
+.custom-btn {
+  width: 150px;
+  margin-top: 40px;
+  margin-left: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

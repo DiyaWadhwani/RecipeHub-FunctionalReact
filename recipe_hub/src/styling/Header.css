@@ -1,0 +1,38 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #a4daeb;
+}
+
+.logo-and-text {
+    display: flex;
+    align-items: center;
+  }
+  
+  .app-name {
+    font-weight: bold;
+    font-size: 1.5rem; /* Adjust the font size as needed */
+    margin-left: 10px; /* Adjust the margin as needed */
+  }
+
+.home-icon {
+  font-size: 30px;
+  left: 1735px;
+  color: black; /* Set the color to your desired value */
+  font-weight: bold;
+}
+
+footer {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0; /* Add background color as needed */
+}
