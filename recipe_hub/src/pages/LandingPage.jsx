@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { myFirebase } from "../models/FirebaseConfig.js";
 import "../styling/LandingPage.css";
 import Header from "../fragments/Header";
 import NavBar from "../fragments/NavBar";
@@ -7,6 +8,16 @@ import LandingRecipesDisplay from "../displayContent/LandingRecipesDisplay";
 import Footer from "../fragments/Footer";
 
 export default function LandingPage() {
+  const [recipeList, setRecipes] = useState([]);
+
+  useEffect(() => {
+    const fetchRecipeList = async () => {
+      const recipeList = await myFirebase.fetchRecipeList();
+      setRecipes(recipeList);
+    };
+    fetchRecipeList();
+  }, []);
+
   return (
     <>
       <Header />
@@ -18,7 +29,7 @@ export default function LandingPage() {
 
         <div className="d-flex flex-col mb-2">
           <UserModuleDisplay />
-          <LandingRecipesDisplay />
+          <LandingRecipesDisplay recipeList={recipeList} />
         </div>
       </div>
       <Footer />

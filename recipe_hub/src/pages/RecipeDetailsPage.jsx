@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import EmptyHeader from "../fragments/EmptyHeader";
 import Footer from "../fragments/Footer";
 // import PropTypes from "prop-types";
-import RecipeDetailsDisplay from "../displayContent/RecipeDetailsDisplay";
+// import RecipeDetailsDisplay from "../displayContent/RecipeDetailsDisplay";
 import RecipeDetails from "../models/RecipeDetails";
 import Ingredient from "../models/Ingredient";
 import MyFirebaseDB from "../models/MyFirebaseDB";
@@ -78,7 +78,7 @@ export default class RecipeDetailsPage extends Component {
               <p className="fork-text">Fork</p>
             </div>
           </Link>
-          <RecipeDetailsDisplay recipeDetails={recipeDetails} />
+          {/* <RecipeDetailsDisplay recipeDetails={recipeDetails} /> */}
           <div></div>
         </div>
         <Footer />
