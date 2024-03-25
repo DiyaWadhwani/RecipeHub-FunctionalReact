@@ -2,11 +2,10 @@ import React from "react";
 import recipehubLogo from "../assets/recipehub-logo.png";
 import "../styling/Header.css";
 
-function handleInputClick() {
-  alert("This feature has been disabled!");
-}
-
 export default function Header() {
+  const handleInputClick = () => {
+    alert("This feature has been disabled!");
+  };
   return (
     <>
       <header>

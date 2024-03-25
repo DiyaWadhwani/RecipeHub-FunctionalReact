@@ -1,48 +1,40 @@
-// import React, { useEffect } from "react";
-// import PropTypes from "prop-types";
-// import MyFirebaseDB from "../models/MyFirebaseDB";
+import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import MyFirebaseDB from "../models/MyFirebaseDB";
 
-// export default function RecipeImageDisplay() {
+const RecipeImageDisplay = ({ recipeName }) => {
+  const [imageUrl, setImageUrl] = useState(null);
 
-//   useEffect(() => {
-//     downloadImage();
-//   }, []);
+  useEffect(() => {
+    const downloadImage = async () => {
+      const myDatabase = new MyFirebaseDB();
+      try {
+        const imageUrl = await myDatabase.downloadImage(recipeName);
+        setImageUrl(imageUrl);
+      } catch (error) {
+        console.error("Error downloading image:", error);
+        throw error;
+      }
+    };
 
-//   return (
-//     <div>
-//       {imageUrl ? (
-//         <img className="recipe-image-display" src={imageUrl} alt="Downloaded" />
-//       ) : (
-//         <p>Loading image...</p>
-//       )}
-//     </div>
-//   );
-// }
+    downloadImage();
+  }, [recipeName]);
 
-// export default class RecipeImageDisplay extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = { imageUrl: null };
-//   }
+  console.log("Image URL:", imageUrl);
 
-//   componentDidUpdate(prevProps) {
-//     if (prevProps.recipeName !== this.props.recipeName) {
-//       this.downloadImage();
-//     }
-//   }
+  return (
+    <div>
+      {imageUrl ? (
+        <img className="recipe-image-display" src={imageUrl} alt="Downloaded" />
+      ) : (
+        <p>Loading image...</p>
+      )}
+    </div>
+  );
+};
 
-//   async downloadImage() {
-//     const { recipeName } = this.props;
-//     const myDatabase = new MyFirebaseDB();
-//     try {
-//       const imageUrl = await myDatabase.downloadImage(recipeName);
-//       this.setState({ imageUrl });
-//     } catch (error) {
-//       console.error("Error downloading image:", error);
-//       throw error;
-//     }
-//   }
+RecipeImageDisplay.propTypes = {
+  recipeName: PropTypes.string,
+};
 
-// RecipeImageDisplay.propTypes = {
-//   recipeName: PropTypes.string,
-// };
+export default RecipeImageDisplay;

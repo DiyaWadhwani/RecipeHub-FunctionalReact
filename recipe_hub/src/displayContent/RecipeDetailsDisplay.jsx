@@ -1,51 +1,52 @@
-// import React from "react";
-// import PropTypes from "prop-types";
-// import Ingredient from "../models/Ingredient";
+import React from "react";
+import RecipeImageDisplay from "../displayContent/RecipeImageDisplay";
+import PropTypes from "prop-types";
+import Ingredient from "../models/Ingredient";
 
-// export default function RecipeDetailsDisplay() {
-//   // const [recipeDetails, setRecipeDetails] = useState({});
+const RecipeDetailsDisplay = ({ recipeDetails }) => {
+  return (
+    <>
+      {recipeDetails && recipeDetails.recipeName ? (
+        <>
+          <div className="recipe-image-ing-display">
+            <RecipeImageDisplay recipeName={recipeDetails.recipeName} />
+            <div className="content-container">
+              <div className="ingredients-section">
+                <h3>Ingredients:</h3>
+                <ul>
+                  {recipeDetails.recipeIngredients.map((ingredient, index) => (
+                    <li key={index}>
+                      {ingredient.ingredientName}: {ingredient.quantity}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
 
-//   return (
-//     <>
-//       {recipeDetails && recipeDetails.recipeName ? (
-//         <>
-//           <div className="recipe-image-ing-display">
-//             {/* <RecipeImageDisplay recipeName={recipeDetails.recipeName} /> */}
-//             <div className="content-container">
-//               <div className="ingredients-section">
-//                 <h3>Ingredients:</h3>
-//                 <ul>
-//                   {recipeDetails.recipeIngredients.map((ingredient) => (
-//                     <li key={ingredient.ingredientName}>
-//                       {ingredient.ingredientName}: {ingredient.quantity}
-//                     </li>
-//                   ))}
-//                 </ul>
-//               </div>
-//             </div>
-//           </div>
+          <div className="instructions-section">
+            <h3>Preparation:</h3>
+            <ol>
+              {recipeDetails.recipeInstructions.map((instruction, index) => (
+                <li key={index}>{instruction}</li>
+              ))}
+            </ol>
+          </div>
+        </>
+      ) : (
+        <p>Loading recipe details...</p>
+      )}
+    </>
+  );
+};
 
-//           <div className="instructions-section">
-//             <h3>Preparation:</h3>
-//             <ol>
-//               {recipeDetails.recipeInstructions.map((instruction, index) => (
-//                 <li key={index}>{instruction}</li>
-//               ))}
-//             </ol>
-//           </div>
-//         </>
-//       ) : (
-//         <p>Loading recipe details...</p>
-//       )}
-//     </>
-//   );
-// }
+RecipeDetailsDisplay.propTypes = {
+  recipeDetails: PropTypes.shape({
+    recipeName: PropTypes.string,
+    recipeAuthor: PropTypes.string,
+    recipeInstructions: PropTypes.arrayOf(PropTypes.string),
+    recipeIngredients: PropTypes.arrayOf(PropTypes.instanceOf(Ingredient)),
+  }),
+};
 
-// RecipeDetailsDisplay.propTypes = {
-//   recipeDetails: PropTypes.shape({
-//     recipeName: PropTypes.string,
-//     recipeAuthor: PropTypes.string,
-//     recipeInstructions: PropTypes.arrayOf(PropTypes.string),
-//     recipeIngredients: PropTypes.arrayOf(PropTypes.instanceOf(Ingredient)),
-//   }),
-// };
+export default RecipeDetailsDisplay;
