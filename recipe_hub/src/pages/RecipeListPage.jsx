@@ -7,7 +7,6 @@ import { IoArrowBackOutline } from "react-icons/io5";
 import RecipeDetails from "../models/RecipeDetails";
 
 export default function RecipeListPage() {
-
   const recipeDetails = RecipeDetails();
   const [recipes, setRecipes] = useState([]);
   const [isForked, setIsForked] = useState(false);
@@ -24,14 +23,14 @@ export default function RecipeListPage() {
     try {
       const pathname = new URL(window.location.href);
 
-      if (pathname === "/myList") {
+      if (pathname.pathname === "/myList") {
         // Fetching my created recipes
         console.log("Maintaining my recipes");
         const myRecipes = await recipeDetails.fetchMyRecipeNames();
         console.log("Recipes from fetchMyRecipeNames:", myRecipes);
         setRecipes(myRecipes);
         setIsForked(false);
-      } else if (pathname === "/myForkedList") {
+      } else if (pathname.pathname === "/myForkedList") {
         // Fetching my forked recipes
         console.log("Maintaining forked recipes");
         const forkedRecipes = await recipeDetails.fetchUserForkedRecipeNames();

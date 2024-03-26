@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getDownloadURL, ref, StorageError } from "firebase/storage";
-import firebaseConfig from "../models/FirebaseConfig";
+import { myFirebase } from "../models/FirebaseConfig";
 import placeholderImage from "../assets/placeholder-image.png";
 
 const LandingRecipesDisplay = () => {
@@ -26,32 +25,8 @@ const LandingRecipesDisplay = () => {
         setRecipeList(recipes);
 
         // Fetch random images for each recipe
-        const newRecipeList = [];
-        for (const recipe of recipes) {
-          try {
-            const imageRef = ref(
-              firebaseConfig.storage,
-              `/images/${recipe.name}.png`
-            );
-            const imageUrl = await getDownloadURL(imageRef);
-            newRecipeList.push({ ...recipe, imageUrl });
-          } catch (error) {
-            if (
-              error instanceof StorageError &&
-              error.code === "storage/object-not-found"
-            ) {
-              // Handle object not found error
-              console.error(
-                `Image for ${recipe.name} not found. Using placeholder.`
-              );
-              newRecipeList.push({ ...recipe, imageUrl: placeholderImage });
-            } else {
-              // Handle other errors
-              console.error(`Error fetching image for ${recipe.name}:`, error);
-              throw error; // Rethrow other errors
-            }
-          }
-        }
+        const newRecipeList = await myFirebase.fetchImagesForRecipes(recipes); // Await here
+        console.log("New recipe list:", newRecipeList);
         setRecipeList(newRecipeList);
       } catch (error) {
         console.error("Error fetching recipe list:", error);
@@ -60,7 +35,7 @@ const LandingRecipesDisplay = () => {
     };
 
     fetchData();
-  }, []); // Empty dependency array to mimic componentDidMount
+  }, []);
 
   return (
     <>

@@ -3,6 +3,7 @@ import {
   getDownloadURL,
   ref,
   uploadBytes,
+  StorageError,
 } from "@firebase/storage";
 import { initializeApp } from "firebase/app";
 import {
@@ -14,6 +15,7 @@ import {
   setDoc,
   updateDoc,
 } from "firebase/firestore";
+
 import placeholderImage from "../assets/placeholder-image.png";
 
 export default function MyFirebase() {
@@ -428,6 +430,33 @@ export default function MyFirebase() {
       console.error("Error fetching forked recipes:", error);
       return [];
     }
+  };
+
+  me.fetchImagesForRecipes = async (recipes) => {
+    const newRecipeList = [];
+    for (const recipe of recipes) {
+      try {
+        const imageRef = ref(myStorage, `/images/${recipe.name}.png`);
+        const imageUrl = await getDownloadURL(imageRef);
+        newRecipeList.push({ ...recipe, imageUrl });
+      } catch (error) {
+        if (
+          error instanceof StorageError &&
+          error.code === "storage/object-not-found"
+        ) {
+          // Handle object not found error
+          console.error(
+            `Image for ${recipe.name} not found. Using placeholder.`
+          );
+          newRecipeList.push({ ...recipe, imageUrl: placeholderImage });
+        } else {
+          // Handle other errors
+          console.error(`Error fetching image for ${recipe.name}:`, error);
+          throw error; // Rethrow other errors
+        }
+      }
+    }
+    return newRecipeList; // Return newRecipeList after the loop completes
   };
 
   return me;
