@@ -14,7 +14,7 @@ export default function EmptyHeader({ headerTag }) {
             <a className="navbar-brand" href="#">
               <img src={recipehubLogo} alt="Logo" width="70" height="70" />
             </a>
-            <h1 className="app-name">{{ headerTag }}</h1>
+            <h1 className="app-name">{headerTag}</h1>
           </div>
 
           <div className="d-flex justify-content-between">

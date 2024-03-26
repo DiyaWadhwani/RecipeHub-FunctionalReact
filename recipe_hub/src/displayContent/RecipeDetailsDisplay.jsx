@@ -1,9 +1,9 @@
 import React from "react";
 import RecipeImageDisplay from "../displayContent/RecipeImageDisplay";
 import PropTypes from "prop-types";
-import Ingredient from "../models/Ingredient";
 
 const RecipeDetailsDisplay = ({ recipeDetails }) => {
+  console.log("Recipe ingredients:", recipeDetails.recipeIngredients);
   return (
     <>
       {recipeDetails && recipeDetails.recipeName ? (
@@ -16,7 +16,8 @@ const RecipeDetailsDisplay = ({ recipeDetails }) => {
                 <ul>
                   {recipeDetails.recipeIngredients.map((ingredient, index) => (
                     <li key={index}>
-                      {ingredient.ingredientName}: {ingredient.quantity}
+                      {ingredient.ingredientName}:{" "}
+                      {ingredient.ingredientQuantity}
                     </li>
                   ))}
                 </ul>
@@ -45,7 +46,7 @@ RecipeDetailsDisplay.propTypes = {
     recipeName: PropTypes.string,
     recipeAuthor: PropTypes.string,
     recipeInstructions: PropTypes.arrayOf(PropTypes.string),
-    recipeIngredients: PropTypes.arrayOf(PropTypes.instanceOf(Ingredient)),
+    recipeIngredients: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
   }),
 };
 

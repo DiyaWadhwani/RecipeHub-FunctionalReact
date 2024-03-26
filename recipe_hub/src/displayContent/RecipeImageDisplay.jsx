@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import MyFirebaseDB from "../models/MyFirebaseDB";
+import { myFirebase } from "../models/FirebaseConfig";
 
 const RecipeImageDisplay = ({ recipeName }) => {
   const [imageUrl, setImageUrl] = useState(null);
 
   useEffect(() => {
     const downloadImage = async () => {
-      const myDatabase = new MyFirebaseDB();
       try {
-        const imageUrl = await myDatabase.downloadImage(recipeName);
+        console.log("Downloading image for recipe:", recipeName);
+        const imageUrl = await myFirebase.downloadImage(recipeName);
         setImageUrl(imageUrl);
       } catch (error) {
         console.error("Error downloading image:", error);
@@ -18,7 +18,7 @@ const RecipeImageDisplay = ({ recipeName }) => {
     };
 
     downloadImage();
-  }, [recipeName]);
+  }, []);
 
   console.log("Image URL:", imageUrl);
 

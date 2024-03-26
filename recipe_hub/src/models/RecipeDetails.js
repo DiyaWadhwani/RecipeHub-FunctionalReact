@@ -1,4 +1,3 @@
-import Ingredient from "./Ingredient";
 import PropTypes from "prop-types";
 import { myFirebase } from "./FirebaseConfig";
 
@@ -55,12 +54,14 @@ export default function RecipeDetails() {
       console.log("Error fetching recipes in RecipeDetails: ", error);
     }
   };
+
+  return me;
 }
 
 RecipeDetails.propTypes = {
   recipeName: PropTypes.string,
   recipeAuthor: PropTypes.string,
   recipeInstructions: PropTypes.objectOf(PropTypes.string),
-  recipeIngredients: PropTypes.arrayOf(PropTypes.instanceOf(Ingredient)),
+  recipeIngredients: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
   recipeImageURL: PropTypes.string,
 };

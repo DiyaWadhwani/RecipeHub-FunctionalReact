@@ -7,16 +7,9 @@ import { IoArrowBackOutline } from "react-icons/io5";
 import RecipeDetails from "../models/RecipeDetails";
 
 export default function RecipeListPage() {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     recipes: [],
-  //     isForked: false,
-  //   };
-  //   this.recipeDetails = new RecipeDetails();
-  // }
 
-  const [recipes, setRecipes] = useState([new RecipeDetails()]);
+  const recipeDetails = RecipeDetails();
+  const [recipes, setRecipes] = useState([]);
   const [isForked, setIsForked] = useState(false);
 
   function handleInputClick() {
@@ -24,10 +17,8 @@ export default function RecipeListPage() {
   }
 
   useEffect(() => {
-    console.log("Component mounted");
     fetchRecipes();
-    // console.log("Recipes fetched:", this.state.recipes);
-  });
+  }, []);
 
   const fetchRecipes = async () => {
     try {
@@ -36,21 +27,20 @@ export default function RecipeListPage() {
       if (pathname === "/myList") {
         // Fetching my created recipes
         console.log("Maintaining my recipes");
-        const myRecipes = await recipes.fetchMyRecipeNames();
+        const myRecipes = await recipeDetails.fetchMyRecipeNames();
         console.log("Recipes from fetchMyRecipeNames:", myRecipes);
         setRecipes(myRecipes);
         setIsForked(false);
       } else if (pathname === "/myForkedList") {
         // Fetching my forked recipes
         console.log("Maintaining forked recipes");
-        const forkedRecipes =
-          await this.recipeDetails.fetchUserForkedRecipeNames();
+        const forkedRecipes = await recipeDetails.fetchUserForkedRecipeNames();
         console.log("Recipes from fetchForkedRecipeNames:", forkedRecipes);
         setRecipes(forkedRecipes);
         setIsForked(true);
       } else {
         // Fetching the entire list of recipes
-        const allRecipes = await this.recipeDetails.fetchRecipeNames();
+        const allRecipes = await recipeDetails.fetchRecipeNames();
         console.log("Recipes from fetchRecipes:", allRecipes);
         setRecipes(allRecipes);
         setIsForked(false);

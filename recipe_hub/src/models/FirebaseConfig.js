@@ -1,4 +1,9 @@
-import { getStorage, getDownloadURL, ref } from "@firebase/storage";
+import {
+  getStorage,
+  getDownloadURL,
+  ref,
+  uploadBytes,
+} from "@firebase/storage";
 import { initializeApp } from "firebase/app";
 import {
   getFirestore,
@@ -6,6 +11,8 @@ import {
   doc,
   getDoc,
   getDocs,
+  setDoc,
+  updateDoc,
 } from "firebase/firestore";
 import placeholderImage from "../assets/placeholder-image.png";
 
@@ -128,16 +135,19 @@ export default function MyFirebase() {
 
         ingredientsSnap.docs.forEach((doc) => {
           const data = doc.data();
-          const newIngredient = new Ingredient(doc.id, data.qty);
-          ingredientList.push(newIngredient);
+          const ingredient = {
+            ingredientName: doc.id,
+            ingredientQuantity: data.qty,
+          };
+          ingredientList.push(ingredient);
         });
 
-        const fetchedRecipeDetails = new RecipeDetails({
+        const fetchedRecipeDetails = {
           recipeName: recipeName,
           recipeAuthor: recipeDocumentData.author,
           recipeInstructions: recipeDocumentData.instructions,
           recipeIngredients: ingredientList,
-        });
+        };
         return fetchedRecipeDetails;
 
         // Return the fetched recipe details directly
@@ -188,16 +198,15 @@ export default function MyFirebase() {
 
             ingredientsSnap.docs.forEach((doc) => {
               const data = doc.data();
-              const newIngredient = new Ingredient(doc.id, data.qty);
-              ingredientList.push(newIngredient);
+              ingredientList.push(doc.id, data.qty);
             });
 
-            const fetchedRecipeDetails = new RecipeDetails({
+            const fetchedRecipeDetails = {
               recipeName: recipeName,
               recipeAuthor: forkedRecipeDocSnap.data().author,
               recipeInstructions: forkedRecipeDocSnap.data().instructions,
               recipeIngredients: ingredientList,
-            });
+            };
 
             return fetchedRecipeDetails;
           } else {
@@ -213,7 +222,7 @@ export default function MyFirebase() {
   me.downloadImage = async (recipeName) => {
     try {
       console.log("trying to download image", recipeName);
-      const imageRef = ref(this.storage, `/images/${recipeName}.png`);
+      const imageRef = ref(myStorage, `/images/${recipeName}.png`);
       console.log("printing URL - ", imageRef);
       const url = await getDownloadURL(imageRef);
       return url;
