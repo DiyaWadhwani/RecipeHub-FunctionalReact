@@ -1,6 +1,6 @@
-export default class Ingredient {
-  constructor(ingredientName = "", quantity = "") {
-    this.ingredientName = ingredientName;
-    this.quantity = quantity;
-  }
-}
+const Ingredient = (ingredientName = "", quantity = "") => ({
+  ingredientName,
+  quantity,
+});
+
+export default Ingredient;

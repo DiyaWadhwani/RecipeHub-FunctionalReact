@@ -1,81 +1,66 @@
 import Ingredient from "./Ingredient";
 import PropTypes from "prop-types";
-import MyFirebaseDB from "./MyFirebaseDB";
+import { myFirebase } from "./FirebaseConfig";
 
-export default class RecipeDetails {
-  constructor({
-    recipeName = "",
-    recipeAuthor = "",
-    recipeInstructions = {},
-    recipeIngredients = [new Ingredient()],
-    recipeImageURL = "",
-  } = {}) {
-    this.recipeName = recipeName;
-    this.recipeAuthor = recipeAuthor;
-    this.recipeIngredients = recipeIngredients;
-    this.recipeInstructions = recipeInstructions;
-    this.recipeImageURL = recipeImageURL;
-    this.myDatabase = new MyFirebaseDB(); // Assuming MyFirebaseDB is defined and imported correctly
-  }
+export default function RecipeDetails() {
+  const me = [];
 
-  async fetchRecipeDetails(recipeName, isForked) {
+  me.fetchRecipeDetails = async (recipeName, isForked) => {
     try {
       console.log("checking isForked to fetch recipe", isForked);
 
       if (isForked === "true") {
         console.log("fetching forkedRecipe from firebase");
         const fetchedRecipeDetails =
-          await this.myDatabase.fetchForkedRecipe(recipeName);
+          await myFirebase.fetchForkedRecipe(recipeName);
         return fetchedRecipeDetails;
       } else {
         console.log("fetching og recipe from firebase");
         const fetchedRecipeDetails =
-          await this.myDatabase.fetchRecipeDetails(recipeName);
+          await myFirebase.fetchRecipeDetails(recipeName);
         return fetchedRecipeDetails;
       }
     } catch (error) {
       console.error("Error fetching recipes in RecipeDetails:", error);
       return [];
     }
-  }
+  };
 
-  async fetchRecipeNames() {
+  me.fetchRecipeNames = async () => {
     try {
-      const myDatabase = new MyFirebaseDB();
-      const allRecipes = await myDatabase.fetchRecipeNames();
+      const allRecipes = await myFirebase.fetchRecipeNames();
       return allRecipes;
     } catch (error) {
       console.error("Error fetching recipes in RecipeDetails:", error);
       return [];
     }
-  }
+  };
 
-  async fetchMyRecipeNames() {
+  me.fetchMyRecipeNames = async () => {
     try {
       const myRecipes =
-        this.myDatabase.fetchUserSpecificRecipeNames("createdRecipes");
+        myFirebase.fetchUserSpecificRecipeNames("createdRecipes");
       return myRecipes;
     } catch (error) {
       console.error("Error fetching recipes in RecipeDetails:", error);
       return [];
     }
-  }
+  };
 
-  async fetchUserForkedRecipeNames() {
+  me.fetchUserForkedRecipeNames = async () => {
     try {
-      const myRecipes = this.myDatabase.fetchUserForkedRecipeNames();
+      const myRecipes = myFirebase.fetchUserForkedRecipeNames();
       return myRecipes;
     } catch (error) {
       console.log("Error fetching recipes in RecipeDetails: ", error);
     }
-  }
+  };
 }
 
 RecipeDetails.propTypes = {
-  recipeDetails: PropTypes.shape({
-    recipeName: PropTypes.string,
-    recipeAuthor: PropTypes.string,
-    recipeInstructions: PropTypes.arrayOf(PropTypes.string),
-    recipeIngredients: PropTypes.objectOf(PropTypes.number),
-  }),
+  recipeName: PropTypes.string,
+  recipeAuthor: PropTypes.string,
+  recipeInstructions: PropTypes.objectOf(PropTypes.string),
+  recipeIngredients: PropTypes.arrayOf(PropTypes.instanceOf(Ingredient)),
+  recipeImageURL: PropTypes.string,
 };

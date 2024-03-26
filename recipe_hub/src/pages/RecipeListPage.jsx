@@ -4,6 +4,7 @@ import EmptyHeader from "../fragments/EmptyHeader";
 import Footer from "../fragments/Footer";
 import { Link } from "react-router-dom";
 import { IoArrowBackOutline } from "react-icons/io5";
+import RecipeDetails from "../models/RecipeDetails";
 
 export default function RecipeListPage() {
   // constructor(props) {
@@ -15,7 +16,7 @@ export default function RecipeListPage() {
   //   this.recipeDetails = new RecipeDetails();
   // }
 
-  const [recipes, setRecipes] = useState([]);
+  const [recipes, setRecipes] = useState([new RecipeDetails()]);
   const [isForked, setIsForked] = useState(false);
 
   function handleInputClick() {
@@ -35,7 +36,7 @@ export default function RecipeListPage() {
       if (pathname === "/myList") {
         // Fetching my created recipes
         console.log("Maintaining my recipes");
-        const myRecipes = await this.recipeDetails.fetchMyRecipeNames();
+        const myRecipes = await recipes.fetchMyRecipeNames();
         console.log("Recipes from fetchMyRecipeNames:", myRecipes);
         setRecipes(myRecipes);
         setIsForked(false);
