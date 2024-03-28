@@ -56,7 +56,7 @@ export default function RecipeListPage() {
         {/* separation between Navbar and page content */}
         <div className="sep-line"></div>
 
-        <Link to="/">
+        <Link to="/homepage">
           <IoArrowBackOutline className="back-arrow" />
         </Link>
 
