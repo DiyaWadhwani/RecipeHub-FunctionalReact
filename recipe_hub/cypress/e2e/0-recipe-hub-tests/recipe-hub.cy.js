@@ -47,3 +47,17 @@ describe("Navigation", () => {
     cy.get(".recipe-list").should("not.contain", "Loading...");
   });
 });
+
+describe("Create Recipe", () => {
+  //test3: User is able to create a recipe
+  it("Creates a recipe", () => {
+    cy.visit("https://recipehub-functional.web.app/newUpdate");
+    cy.get("input[name='recipeName']").type("Test Recipe");
+    cy.get("input[name='ingredientName']").type("Test Ingredient");
+    cy.get("input[name='quantity']").type("Test Quantity");
+    cy.get("textarea[name='instruction']").type("Test Instructions");
+    cy.get("input[name='authorName']").type("Test Author");
+    cy.get("button[type='submit']").click();
+    cy.contains("Thank you for sharing your recipe to RecipeHub!");
+  });
+});
