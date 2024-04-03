@@ -55,7 +55,7 @@ export default function RecipeDetailsPage() {
         <Link
           to={`/newUpdate?recipe_details=${encodeURIComponent(
             JSON.stringify(recipeDetails)
-          )}`}
+          )}&isForked=true`}
         >
           {!isForked && (
             <div className="fork-tag">

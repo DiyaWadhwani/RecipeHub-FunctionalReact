@@ -19,7 +19,9 @@ export default function CreateRecipePage() {
     // Check if query parameters exist
     const urlParams = new URLSearchParams(window.location.search);
     const recipeDetailsParam = urlParams.get("recipe_details");
-    setIsForked(urlParams.get("isForked"));
+    console.log("recipeDetailsParam -- ", recipeDetailsParam);
+    console.log("recipeIngredients -- ", recipeDetailsParam.recipeIngredients);
+    setIsForked(urlParams.get("isForked") === "true");
 
     if (recipeDetailsParam) {
       try {
@@ -43,7 +45,7 @@ export default function CreateRecipePage() {
         console.error("Error parsing recipeDetailsParam:", error);
       }
     }
-  });
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -74,7 +76,10 @@ export default function CreateRecipePage() {
   };
 
   const handleAddIngredient = () => {
-    setIngredients([...ingredients, { ingredientName: "", quantity: "" }]);
+    setIngredients([
+      ...ingredients,
+      { ingredientName: "", ingredientQuantity: "" },
+    ]);
   };
 
   const handleAddInstruction = () => {
@@ -113,7 +118,7 @@ export default function CreateRecipePage() {
 
     // Clear form inputs
     setRecipeName("");
-    setIngredients([{ ingredientName: "", quantity: "" }]);
+    setIngredients([{ ingredientName: "", ingredientQuantity: "" }]);
     setInstructions([""]);
     setAuthorName("");
     setImageFile(null);
@@ -159,7 +164,7 @@ export default function CreateRecipePage() {
                   className="form-control mt-2"
                   name="quantity"
                   placeholder="Quantity"
-                  value={ingredient.quantity}
+                  value={ingredient.ingredientQuantity}
                   onChange={(e) => handleIngredientChange(e, index)}
                   required
                 />

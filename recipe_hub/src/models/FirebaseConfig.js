@@ -242,13 +242,13 @@ export default function MyFirebase() {
 
   me.addRecipeToFirestore = async (recipeDetails) => {
     try {
-      console.log("Adding recipe to firestore now !!");
+      console.log("Adding recipe to firestore now !! -- ", recipeDetails);
 
       // Step 1: Upload image to Firebase Storage
       console.log("step 1 - uploading");
       const imageFile = recipeDetails.recipeImageURL;
       const storageRef = ref(
-        this.storage,
+        myStorage,
         `/images/${recipeDetails.recipeName}.png`
       );
       await uploadBytes(storageRef, imageFile);
@@ -278,14 +278,14 @@ export default function MyFirebase() {
 
         // Set the qty field in the ingredient document
         await setDoc(ingredientRef, {
-          qty: ingredient.quantity,
+          qty: ingredient.ingredientQuantity,
         });
       }
       console.log("step 3 completed");
 
       //Step 4: Add it to users createdRecipes
       console.log("Step 4 - update user contributions");
-      this.addNewRecipeNameToUser(recipeDetails.recipeName);
+      addNewRecipeNameToUser(recipeDetails.recipeName);
 
       console.log("Recipe added successfully!");
     } catch (error) {
@@ -293,7 +293,7 @@ export default function MyFirebase() {
     }
   };
 
-  me.addNewRecipeNameToUser = async (recipeName) => {
+  const addNewRecipeNameToUser = async (recipeName) => {
     try {
       const userCollectionRef = collection(myDatabase, "users");
       const userCollectionSnap = await getDocs(userCollectionRef);
@@ -380,7 +380,7 @@ export default function MyFirebase() {
           // Add each ingredient to the ingredients collection
           recipeIngredients.forEach(async (ingredient) => {
             const ingredientData = {
-              qty: ingredient.quantity,
+              qty: ingredient.ingredientQuantity,
             };
 
             await setDoc(
