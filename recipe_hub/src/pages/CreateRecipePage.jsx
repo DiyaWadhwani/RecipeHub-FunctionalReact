@@ -8,7 +8,7 @@ import { myFirebase } from "../models/FirebaseConfig";
 export default function CreateRecipePage() {
   const [recipeName, setRecipeName] = useState("");
   const [ingredients, setIngredients] = useState([
-    { ingredientName: "", quantity: "" },
+    { ingredientName: "", ingredientQuantity: "" },
   ]);
   const [instructions, setInstructions] = useState([""]);
   const [authorName, setAuthorName] = useState("");
@@ -19,8 +19,6 @@ export default function CreateRecipePage() {
     // Check if query parameters exist
     const urlParams = new URLSearchParams(window.location.search);
     const recipeDetailsParam = urlParams.get("recipe_details");
-    console.log("recipeDetailsParam -- ", recipeDetailsParam);
-    console.log("recipeIngredients -- ", recipeDetailsParam.recipeIngredients);
     setIsForked(urlParams.get("isForked") === "true");
 
     if (recipeDetailsParam) {
