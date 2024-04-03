@@ -34,8 +34,7 @@ RecipeHub is a collaborative web application that combines the collaborative spi
 
 3. **Run the Application:**
     Open the index.html file in your preferred web browser.
-    
-    - Login using the credentials below:
+    Login using the credentials below:
     - _Username:_ diya@gmail.com
     - _Password:_ diya@2024
 
