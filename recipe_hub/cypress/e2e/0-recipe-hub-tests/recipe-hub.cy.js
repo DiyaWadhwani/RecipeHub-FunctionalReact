@@ -23,3 +23,27 @@ describe("Login Form", () => {
     cy.contains("Invalid email or password");
   });
 });
+
+describe("Navigation", () => {
+  //test2: User is able to navigate through the pages
+  it("Navigates through homepage", () => {
+    cy.visit("https://recipehub-functional.web.app/underConstruction");
+    cy.get("h1").contains("This page is under construction");
+
+    cy.visit("https://recipehub-functional.web.app/recipelist");
+    cy.get(".back-arrow").click();
+    cy.url().should("include", "/homepage");
+
+    cy.visit("https://recipehub-functional.web.app/recipelist");
+    cy.get(".recipe-list").should("contain", "No recipes found.");
+    cy.get(".recipe-list").should("not.contain", "Loading...");
+
+    cy.visit("https://recipehub-functional.web.app/myList");
+    cy.get(".recipe-list").should("contain", "No recipes found.");
+    cy.get(".recipe-list").should("not.contain", "Loading...");
+
+    cy.visit("https://recipehub-functional.web.app/myForkedList");
+    cy.get(".recipe-list").should("contain", "No recipes found.");
+    cy.get(".recipe-list").should("not.contain", "Loading...");
+  });
+});
