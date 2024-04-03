@@ -59,7 +59,7 @@ https://www.figma.com/file/3SrsjFI1bN6nqfqBXoE9BB/RecipeHub?type=design&node-id=
 ## Hosted Web Application
 
 You can view the working application here if you wish to take a quick look
-https://recipehub-2822d.web.app
+https://recipehub-functional.web.app
 
 ## Video Demo
 
