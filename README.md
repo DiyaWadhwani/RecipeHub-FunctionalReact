@@ -30,13 +30,14 @@ RecipeHub is a collaborative web application that combines the collaborative spi
 
 2. **Navigate to the Project Directory:**
     ```bash
-   cd RecipeHub_PDP_OOP
+   cd RecipeHub-FunctionalReact
 
 3. **Run the Application:**
     Open the index.html file in your preferred web browser.
-    Login using the credentials below:
-    _Username:_ diya@gmail.com
-    _Password:_ diya@2024
+    
+    - Login using the credentials below:
+    - _Username:_ diya@gmail.com
+    - _Password:_ diya@2024
 
 ## User Stories
 
@@ -47,7 +48,7 @@ RecipeHub is a collaborative web application that combines the collaborative spi
 
 ## User Personas
 
-Explore various dimensions such as cuisine preferences, cooking styles, ingredient mastery, tech-savviness, and more to tailor your RecipeHub experience.
+Explore various dimensions such as cuisine preferences, cooking styles, ingredient mastery, tech-saviness, and more to tailor your RecipeHub experience.
 
 ## Figma Mockups
 
