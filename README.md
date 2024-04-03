@@ -26,7 +26,7 @@ RecipeHub is a collaborative web application that combines the collaborative spi
 
 1. **Clone the Repository:**
     ```bash
-   git clone https://github.com/DiyaWadhwani/RecipeHub_PDP_OOP.git
+   git clone https://github.com/DiyaWadhwani/RecipeHub-FunctionalReact.git
 
 2. **Navigate to the Project Directory:**
     ```bash
