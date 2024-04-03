@@ -19,7 +19,7 @@ export default function EmptyHeader({ headerTag }) {
 
           <div className="d-flex justify-content-between">
             <div className="ms-auto">
-              <Link to="/">
+              <Link to="/homepage">
                 <FaHome className="home-icon" />
               </Link>
             </div>

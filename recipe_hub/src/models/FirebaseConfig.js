@@ -20,13 +20,20 @@ import placeholderImage from "../assets/placeholder-image.png";
 
 export default function MyFirebase() {
   const firebaseConfig = {
-    apiKey: "AIzaSyCPhEcbkiySYg38JEVK-nUmzNJ08hdzfz0",
-    authDomain: "recipehub-2822d.firebaseapp.com",
-    projectId: "recipehub-2822d",
-    storageBucket: "recipehub-2822d.appspot.com",
-    messagingSenderId: "397137383460",
-    appId: "1:397137383460:web:ec732284465758e4e308b1",
-    measurementId: "G-RB0QG4M7EZ",
+    // apiKey: "AIzaSyCPhEcbkiySYg38JEVK-nUmzNJ08hdzfz0",
+    // authDomain: "recipehub-2822d.firebaseapp.com",
+    // projectId: "recipehub-2822d",
+    // storageBucket: "recipehub-2822d.appspot.com",
+    // messagingSenderId: "397137383460",
+    // appId: "1:397137383460:web:ec732284465758e4e308b1",
+    // measurementId: "G-RB0QG4M7EZ",
+    apiKey: "AIzaSyBFM1NKZw0bL12YcOJjeUoN-zjWbVIsKxQ",
+    authDomain: "recipehub-functional.firebaseapp.com",
+    projectId: "recipehub-functional",
+    storageBucket: "recipehub-functional.appspot.com",
+    messagingSenderId: "631320300172",
+    appId: "1:631320300172:web:2bcb5b2ab7ff65d4e189a9",
+    measurementId: "G-EES3WZGXSZ",
   };
 
   const app = initializeApp(firebaseConfig);
