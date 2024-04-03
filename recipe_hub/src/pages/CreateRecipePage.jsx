@@ -8,7 +8,7 @@ import { myFirebase } from "../models/FirebaseConfig";
 export default function CreateRecipePage() {
   const [recipeName, setRecipeName] = useState("");
   const [ingredients, setIngredients] = useState([
-    { ingredientName: "", quantity: "" },
+    { ingredientName: "", ingredientQuantity: "" },
   ]);
   const [instructions, setInstructions] = useState([""]);
   const [authorName, setAuthorName] = useState("");
