@@ -38,7 +38,7 @@ RecipeHub is a collaborative web application that combines the collaborative spi
     npm install cypress --save-dev
     npx cypress open
 
-4. **Check if the tests work:**
+4. **Run Cypress:**
 - Select E2E test
 - Select Electron
 - Select recipe-hub.cy.js from the folder with the name 0-recipe-hub-tests
