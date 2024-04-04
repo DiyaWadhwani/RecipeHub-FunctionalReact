@@ -207,7 +207,11 @@ export default function MyFirebase() {
 
             ingredientsSnap.docs.forEach((doc) => {
               const data = doc.data();
-              ingredientList.push(doc.id, data.qty);
+              console.log(doc.id, data.qty);
+              ingredientList.push({
+                ingredientName: doc.id,
+                ingredientQuantity: data.qty,
+              });
             });
 
             const fetchedRecipeDetails = {

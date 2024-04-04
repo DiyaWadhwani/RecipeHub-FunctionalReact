@@ -8,10 +8,11 @@ export default function RecipeDetails() {
     try {
       console.log("checking isForked to fetch recipe", isForked);
 
-      if (isForked === "true") {
+      if (isForked) {
         console.log("fetching forkedRecipe from firebase");
         const fetchedRecipeDetails =
           await myFirebase.fetchForkedRecipe(recipeName);
+        console.log("fetchedRecipeDetails", fetchedRecipeDetails);
         return fetchedRecipeDetails;
       } else {
         console.log("fetching og recipe from firebase");
