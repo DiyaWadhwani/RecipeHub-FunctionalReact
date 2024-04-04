@@ -1,7 +1,7 @@
 /* global cy */
 /// <reference types="cypress" />
 
-describe("Login Form", () => {
+describe("Test 1: Login Form", () => {
   //Executes before each test
   beforeEach(() => {
     cy.visit("https://recipehub-functional.web.app/");
@@ -24,12 +24,14 @@ describe("Login Form", () => {
   });
 });
 
-describe("Navigation", () => {
+describe("Test 2: Navigation through NavBar", () => {
   //test2: User is able to navigate through the pages
-  it("Navigates through homepage", () => {
+  it("Overview", () => {
     cy.visit("https://recipehub-functional.web.app/underConstruction");
     cy.get("h1").contains("This page is under construction");
+  });
 
+  it("All Recipes", () => {
     cy.visit("https://recipehub-functional.web.app/recipelist");
     cy.get(".back-arrow").click();
     cy.url().should("include", "/homepage");
@@ -37,18 +39,22 @@ describe("Navigation", () => {
     cy.visit("https://recipehub-functional.web.app/recipelist");
     cy.get(".recipe-list").should("contain", "No recipes found.");
     cy.get(".recipe-list").should("not.contain", "Loading...");
+  });
 
+  it("My Recipes", () => {
     cy.visit("https://recipehub-functional.web.app/myList");
     cy.get(".recipe-list").should("contain", "No recipes found.");
     cy.get(".recipe-list").should("not.contain", "Loading...");
+  });
 
+  it("My Forked Recipes", () => {
     cy.visit("https://recipehub-functional.web.app/myForkedList");
     cy.get(".recipe-list").should("contain", "No recipes found.");
     cy.get(".recipe-list").should("not.contain", "Loading...");
   });
 });
 
-describe("Create Recipe", () => {
+describe("Test 3: Create a new recipe", () => {
   //test3: User is able to create a recipe
   it("Creates a recipe", () => {
     cy.visit("https://recipehub-functional.web.app/newUpdate");
@@ -71,7 +77,7 @@ describe("Create Recipe", () => {
   });
 });
 
-describe("Recipe Details", () => {
+describe("Test 4: Display Recipe Details", () => {
   //test4: User is able to view the recipe details
   it("Views recipe details", () => {
     cy.visit("https://recipehub-functional.web.app/recipeList");
@@ -88,9 +94,9 @@ describe("Recipe Details", () => {
   });
 });
 
-describe("Fork Recipe", () => {
+describe("Test 5: Fork Recipe", () => {
   // Test 5: User is able to fork a recipe
-  it("Forks a recipe", () => {
+  it("Redirects to form with prefilled recipe data", () => {
     cy.visit(
       "https://recipehub-functional.web.app/recipe?recipe_name=Test%20Recipe&isForked=false"
     );
@@ -111,10 +117,15 @@ describe("Fork Recipe", () => {
       "have.value",
       "Test Instruction 1"
     );
-    // cy.get("#root > div > form > div:nth-child(3) > button").click();
+    cy.get("input[name='authorName']").should("have.value", "Test Author");
+  });
+
+  it("Update an instruction in the existing recipe", () => {
+    cy.visit(
+      "https://recipehub-functional.web.app/newUpdate?recipe_details=%7B%22recipeName%22%3A%22Test%20Recipe%22%2C%22recipeAuthor%22%3A%22Test%20Author%22%2C%22recipeInstructions%22%3A%5B%22Test%20Instruction%201%22%5D%2C%22recipeIngredients%22%3A%5B%7B%22ingredientName%22%3A%22Test%20Ingredient%22%2C%22ingredientQuantity%22%3A%22Test%20Quantity%22%7D%5D%7D&isForked=true"
+    );
     cy.get("textarea[name='instruction']").clear();
     cy.get("textarea[name='instruction']").type("Test Instruction updated");
-    cy.get("input[name='authorName']").should("have.value", "Test Author");
 
     cy.window().then((win) => {
       cy.stub(win, "alert").as("alertStub");
@@ -127,7 +138,9 @@ describe("Fork Recipe", () => {
       "be.calledWith",
       "Thank you for sharing your recipe to RecipeHub!"
     );
+  });
 
+  it("Views the updated recipe details", () => {
     cy.visit("https://recipehub-functional.web.app/myForkedList");
     cy.get(".recipe-list").contains("Test Recipe");
     cy.visit(
