@@ -62,8 +62,7 @@ You can view the working application here if you wish to take a quick look
 https://recipehub-functional.web.app
 
 ## Video Demo
-
-
+https://youtu.be/jyczAmZN51g
 
 ## Contributing
 
