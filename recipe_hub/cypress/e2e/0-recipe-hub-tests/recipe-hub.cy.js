@@ -22,6 +22,12 @@ describe("Test 1: Login Form", () => {
     cy.get("button[type='submit']").click();
     cy.contains("Invalid email or password");
   });
+
+  it("Logs out the user", () => {
+    cy.visit("https://recipehub-functional.web.app/homepage");
+    cy.get(".edit-profile").click();
+    cy.contains("Login");
+  });
 });
 
 describe("Test 2: Navigation through NavBar", () => {
