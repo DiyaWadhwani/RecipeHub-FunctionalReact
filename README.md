@@ -50,6 +50,29 @@ RecipeHub is a collaborative web application that combines the collaborative spi
 
 Explore various dimensions such as cuisine preferences, cooking styles, ingredient mastery, tech-saviness, and more to tailor your RecipeHub experience.
 
+## TestCases:
+
+1. **Login Form:**
+- Test user login with valid credentials.
+- Test error message display with invalid credentials.
+
+2. **Navigation through NavBar:**
+- Test navigation to "Overview" page.
+- Test navigation to "All Recipes" page.
+- Test navigation to "My Recipes" page.
+- Test navigation to "My Forked Recipes" page.
+
+3. **Create a New Recipe:**
+- Test creating a new recipe.
+
+4. **Display Recipe Details:**
+- Test viewing recipe details.
+
+4. **Fork Recipe:**
+- Test redirecting to a form with prefilled recipe data.
+- Test updating an instruction in the existing recipe.
+- Test viewing the updated recipe details.
+
 ## Figma Mockups
 
 You can view the figma mockups present in the documentation pdf file or using the link below
