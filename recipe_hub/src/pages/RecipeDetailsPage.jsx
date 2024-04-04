@@ -45,7 +45,7 @@ export default function RecipeDetailsPage() {
         <EmptyHeader headerTag={recipeDetails.recipeName} />
         <div className="sep-line"></div>
         <div className="author-back-feature">
-          <Link to="/recipeList">
+          <Link to="/homepage">
             <IoArrowBackOutline className="back-arrow" />
           </Link>
           <div className="author-tag">

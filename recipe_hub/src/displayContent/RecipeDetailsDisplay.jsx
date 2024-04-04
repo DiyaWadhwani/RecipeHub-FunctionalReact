@@ -3,7 +3,6 @@ import RecipeImageDisplay from "../displayContent/RecipeImageDisplay";
 import PropTypes from "prop-types";
 
 const RecipeDetailsDisplay = ({ recipeDetails }) => {
-  console.log("Recipe ingredients:", recipeDetails.recipeIngredients);
   return (
     <>
       {recipeDetails && recipeDetails.recipeName ? (
