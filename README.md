@@ -32,12 +32,16 @@ RecipeHub is a collaborative web application that combines the collaborative spi
     ```bash
    cd RecipeHub-FunctionalReact
 
-3. **Run the Application:**
-    Open the index.html file in your preferred web browser.
-    
-4. **Login using the credentials below:**
-    - _Username:_ diya@gmail.com
-    - _Password:_ diya@2024
+3. **Run the Tests:**
+    ```bash
+    cd recipe_hub
+    npm install cypress --save-dev
+    npx cypress open
+
+4. **Check if the tests work:**
+- Select E2E test
+- Select Electron
+- Select recipe-hub.cy.js from the folder with the name 0-recipe-hub-tests
 
 ## User Stories
 
