@@ -28,12 +28,6 @@ export default function CreateRecipePage() {
           typeof recipeDetailsParam === "string"
             ? JSON.parse(decodeURIComponent(recipeDetailsParam))
             : recipeDetailsParam;
-
-        console.log(
-          "recipeDetails -- ",
-          recipeDetails.recipeAuthor,
-          recipeDetails.recipeIngredients
-        );
         setRecipeName(recipeDetails.recipeName);
         setIngredients(recipeDetails.recipeIngredients);
         setAuthorName(recipeDetails.recipeAuthor);
@@ -160,8 +154,8 @@ export default function CreateRecipePage() {
                 <input
                   type="text"
                   className="form-control mt-2"
-                  name="quantity"
-                  placeholder="Quantity"
+                  name="ingredientQuantity"
+                  placeholder="Ingredient Quantity"
                   value={ingredient.ingredientQuantity}
                   onChange={(e) => handleIngredientChange(e, index)}
                   required
