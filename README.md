@@ -68,7 +68,7 @@ Explore various dimensions such as cuisine preferences, cooking styles, ingredie
 4. **Display Recipe Details:**
 - Test viewing recipe details.
 
-4. **Fork Recipe:**
+5. **Fork Recipe:**
 - Test redirecting to a form with prefilled recipe data.
 - Test updating an instruction in the existing recipe.
 - Test viewing the updated recipe details.
