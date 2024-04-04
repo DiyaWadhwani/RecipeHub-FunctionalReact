@@ -3,6 +3,7 @@
 ## Welcome to RecipeHub!
 
 RecipeHub is a collaborative web application that combines the collaborative spirit of GitHub with the culinary delights of recipes. Explore, customize, and share a wide variety of recipes contributed by users from around the world.
+This branch contains the tests required to ensure that the application runs as expected.
 
 ## Key Features
 
