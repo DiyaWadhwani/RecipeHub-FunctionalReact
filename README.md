@@ -59,6 +59,7 @@ Explore various dimensions such as cuisine preferences, cooking styles, ingredie
 1. **Login Form:**
 - Test user login with valid credentials.
 - Test error message display with invalid credentials.
+- Logs the user out
 
 2. **Navigation through NavBar:**
 - Test navigation to "Overview" page.
@@ -89,7 +90,7 @@ You can view the working application here if you wish to take a quick look
 https://recipehub-functional.web.app
 
 ## Video Demo
-https://youtu.be/jyczAmZN51g
+https://youtu.be/Eb9BOHh-JHI
 
 ## Contributing
 
